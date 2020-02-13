@@ -1,0 +1,42 @@
+.table{
+    border-collapse: collapse;
+    grid-area: table;
+}
+TD, TH {
+    padding: 3px; 
+    border: 1px solid black; 
+   }
+.button{
+grid-area: button;
+margin-left: 50px;
+}
+
+.Main{
+    display: grid;
+    grid-template-columns:5fr 1 fr ;
+    grid-template-areas:'table button' ;
+    margin-top: 40px;
+}
+.sort{
+    position: relative;
+    width: 0;
+    height: 0;
+    border-bottom: 14px solid green;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    bottom: 18px;
+    left: 4px;
+}
+.unsort{
+    position: relative;
+    width: 0; 
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 14px solid red;
+    top: 18px;
+    left: 4px;
+}
+.find{
+    margin-left: 40px;
+}
