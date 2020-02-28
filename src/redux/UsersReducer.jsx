@@ -12,6 +12,7 @@ const initialState = {
     Sort: 0,
     findUserText: '',
     isClickInfo: false,
+    
 }
 
 const UsersReducer = (state = initialState, action) => {
@@ -20,13 +21,29 @@ const UsersReducer = (state = initialState, action) => {
             let Arr = []
 
             if (action.isClickInfo === true && state.isBig === false && state.findUserText.length !== 0) {
-                Arr = state.BigUsers.filter((item) => (item.firstName == state.findUserText) )
+                for ( let key=0;key<state.BigUsers.length;key++ ){
+                if (state.BigUsers[key].id==(+state.findUserText) ||
+                    state.BigUsers[key].firstName.indexOf(state.findUserText)!=-1||
+                    state.BigUsers[key].lastName.indexOf(state.findUserText)!=-1||
+                    state.BigUsers[key].email.indexOf(state.findUserText)!=-1||
+                    state.BigUsers[key].phone.indexOf(state.findUserText)!=-1)
+                       {Arr.push(state.BigUsers[key])}
+                   
+                }
+               
                 return { ...state, isClickInfo: action.isClickInfo, BigUsers: [...Arr] }
             }
 
             if (action.isClickInfo === true && state.isBig === true && state.findUserText.length !== 0) {
-                Arr = state.SmallUsers.filter((item) => item.firstName == state.findUserText)
-                return { ...state, isClickInfo: action.isClickInfo, SmallUsers: [...Arr] }
+                for ( let key=0;key<state.SmallUsers.length;key++ ){
+                    if (state.SmallUsers[key].id==(+state.findUserText) ||
+                    state.SmallUsers[key].firstName.indexOf(state.findUserText)!=-1||
+                    state.SmallUsers[key].lastName.indexOf(state.findUserText)!=-1||
+                    state.SmallUsers[key].email.indexOf(state.findUserText)!=-1||
+                    state.SmallUsers[key].phone.indexOf(state.findUserText)!=-1)
+                           {Arr.push(state.SmallUsers[key])}
+                }
+                return { ...state, isClickInfo: action.isClickInfo, SmallUsers: [...Arr] }    
             }
           
         }
@@ -37,7 +54,7 @@ const UsersReducer = (state = initialState, action) => {
             let mass = []
             if (action.Sort % 2 === 0 && state.isBig === true) {
                 mass = action.users.sort((prev, next) => prev.id - next.id);
-                console.log(mass)
+               
                 return { ...state, Sort: action.Sort, SmallUsers: mass }
             }
             if (action.Sort % 2 === 1 && state.isBig === true) {
@@ -54,6 +71,7 @@ const UsersReducer = (state = initialState, action) => {
                 mass = action.users.sort((prev, next) => prev.id - next.id).reverse();
                 return { ...state, Sort: action.Sort, BigUsers: mass }
             }
+            
 
         }
         case DATA_CLICK: {

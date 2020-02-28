@@ -40,7 +40,7 @@ const Table = (props) => {
    <thead>
      <tr className = {s.table}>
        <th  onClick={()=>{onSortUser(props.Sort)}}>id<span className={props.Sort%2===0 ? s.sort : s.unsort}></span></th>
-       <th >firstName</th>
+       <th onClick={()=>{onSortUser(props.Sort)}} >firstName</th>
        <th >lastName</th>
        <th>email</th>
        <th >phone</th>
