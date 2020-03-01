@@ -8,9 +8,13 @@ import FulluserInfo from './FullUserInfo';
 
 const Table = (props) => {
 
+  const Back=()=>{
+    props.BackUsers(true)
+  }
   const IsClickFind=()=>{
-    props.FindUserInfo(true)
+    props.FindUserInfo(true,false)
     props.FindText('')
+  
   }
   const UserText=(e)=>{
     let text=e.target.value;
@@ -32,6 +36,7 @@ const Table = (props) => {
    isForm = {props.isForm}
    />:
    ''}
+   
     
      <div className = {s.Main}>
      <FulluserInfo TakeData = {props.TakeData}
@@ -71,9 +76,11 @@ const Table = (props) => {
    <button onClick = {()=>{props.isFull(true)}}>Уменьшенная</button>:
    <button onClick = {()=>{props.isFull(false)}}>Увеличенная</button>
    }
-    <span className={s.find}><input onChange={UserText}></input>
-         <button onClick={IsClickFind}>Найти</button></span>
+    <span className={s.find}><input value={props.findUserText} onChange={UserText}></input>
+         <button onClick={IsClickFind}>Найти</button></span><br/>
+         <button onClick={Back}>Вернуть начальные данные</button>
    </span>
+   
   
    </div>
    </div>

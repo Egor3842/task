@@ -10,7 +10,8 @@ import {setUser,
         DataClicked,
         Sorted,
         FindText,
-        FindUserInfo
+        FindUserInfo,
+        BackUsers
         } from './../redux/UsersReducer'
 import Preloader from '../Preloader';
 import Table from './Users';
@@ -45,7 +46,9 @@ class UsersContainerAPI extends React.Component
                     Sorted={this.props.Sorted}
                     FindText={this.props.FindText}
                     FindUserInfo={this.props.FindUserInfo}
-                    
+                    BackUsers={this.props.BackUsers}
+                    isBacking={this.props.isBacking}
+                    findUserText={this.props.findUserText}
                     />}
         </>
         }
@@ -60,11 +63,12 @@ let  mapStateToProps=(state)=>{
         TakeData:state.UsersReducer.TakeData,
         isDataClick:state.UsersReducer.isDataClick,
         Sort:state.UsersReducer.Sort,
-       
+        isBacking:state.UsersReducer.isBacking,
+        findUserText:state.UsersReducer.findUserText
     }
     
 }
 
 
 export default connect(mapStateToProps,
-    {TAKEDATAINFO,setUser,AddDataInfo,FindText,FindUserInfo, Sorted,setUsersSmallThunkCreator,DataClicked,setUsersBigThunkCreator,isFull,isForm})(UsersContainerAPI)
+    {BackUsers,TAKEDATAINFO,setUser,AddDataInfo,FindText,FindUserInfo, Sorted,setUsersSmallThunkCreator,DataClicked,setUsersBigThunkCreator,isFull,isForm})(UsersContainerAPI)
